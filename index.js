@@ -1,37 +1,46 @@
 #!/usr/bin/env node
-const fs = require('node:fs');
-const colors = require('colors');
-const { DEFAULT_EXPORTFILE_NAME } = require('./constants');
-const Spinner = require('cli-spinner').Spinner;
-const readAllDirectory = require('./utils/readAllDirectory');
-const getExcludingFiles = require('./utils/getExcludingFiles');
-
-var spinner = new Spinner('processing.. %s');
-spinner.setSpinnerString(18);
-spinner.setSpinnerDelay(50);
-spinner.setSpinnerTitle('Reading your directory ...\n');
-spinner.start();
+import readAllDirectory from './utils/readAllDirectory.js';
+import getExcludingFiles from './utils/getExcludingFiles.js';
+import colors from 'colors';
+import { BACKEND_URL } from './constants.js';
 
 //Business Logic
 const files = [];
 const filesToBeExcluded = getExcludingFiles();
-readAllDirectory(process.cwd(), files, filesToBeExcluded);
-fs.writeFileSync(
-  'extractedFilesAndFolder.json',
-  JSON.stringify({
-    files: files,
-    name: 'generatedFrom_VSCode_file&foder_tojson',
-  })
-);
 
-spinner.stop();
-console.log(
-  colors.green(`\nSuccessfully exported to ${DEFAULT_EXPORTFILE_NAME}\n`)
-);
-console.log(
-  colors.white.bold(
-    `head over to ${colors.green(
-      `https://vscode-files-andfolder-to-web.vercel.app/`
-    )} and upload ${DEFAULT_EXPORTFILE_NAME} to visualize\n`
-  )
-);
+readAllDirectory(process.cwd(), files, filesToBeExcluded);
+
+const fetchFullFillCallback = content => {
+  if (content.status === 'failed') {
+    throw new Error(content.message);
+  }
+
+  console.log(
+    colors.green(
+      '\nsuccessfully read all files and folder - click on the link below to see your project structure\n'
+    )
+  );
+  console.log(colors.blue.underline.bold(`${BACKEND_URL}${content.url}\n`));
+};
+const fetchErrCallback = err => {
+  if (err.message === 'fetch failed') {
+    console.log(
+      colors.red.bold('\n Looks like you are not connected to internet !!!!\n')
+    );
+  }
+
+  console.log(colors.red.bold('\n' + err.message + '!!!\n'));
+};
+
+fetch(BACKEND_URL, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(files),
+})
+  .then(objRes => {
+    return objRes.json();
+  })
+  .then(fetchFullFillCallback)
+  .catch(fetchErrCallback);
