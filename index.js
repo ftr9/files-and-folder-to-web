@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('node:fs');
 const colors = require('colors');
 const { DEFAULT_EXPORTFILE_NAME } = require('./constants');
