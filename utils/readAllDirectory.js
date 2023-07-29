@@ -1,11 +1,14 @@
-const fs = require('node:fs');
-const { DEFAULT_EXPORTFILE_NAME } = require('../constants');
+import fs from 'node:fs';
+import colors from 'colors';
 
 const readAllDirectory = (path, fileArr, filesToBeExcluded = []) => {
   const folder = fs.readdirSync(path);
 
   for (let i = 0; i < folder.length; i++) {
     if (fs.statSync(path + '\\' + folder[i]).isDirectory()) {
+      console.log(
+        `${colors.green('Reading')} 📁 ${colors.bold.red('-->')} ${folder[i]}`
+      );
       fileArr.push({
         name: folder[i],
         children: [],
@@ -18,10 +21,9 @@ const readAllDirectory = (path, fileArr, filesToBeExcluded = []) => {
         );
       }
     } else {
-      //do not include json file of extractedFilesAndFolder
-      if (folder[i] === DEFAULT_EXPORTFILE_NAME) {
-        continue;
-      }
+      console.log(
+        `${colors.green('Reading')} 📄 ${colors.bold.red('-->')} ${folder[i]}`
+      );
       fileArr.push({
         name: folder[i],
       });
@@ -29,4 +31,4 @@ const readAllDirectory = (path, fileArr, filesToBeExcluded = []) => {
   }
 };
 
-module.exports = readAllDirectory;
+export default readAllDirectory;
