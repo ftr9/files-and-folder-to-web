@@ -15,7 +15,7 @@ spinner.start();
 //Business Logic
 const files = [];
 const filesToBeExcluded = getExcludingFiles();
-readAllDirectory(__dirname, files, filesToBeExcluded);
+readAllDirectory(process.cwd(), files, filesToBeExcluded);
 fs.writeFileSync(
   'extractedFilesAndFolder.json',
   JSON.stringify({
