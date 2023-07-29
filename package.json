@@ -1,6 +1,6 @@
 {
   "name": "files-and-folders-to-web",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Visualize your IDE's files and folders in web",
   "main": "./index.js",
   "type": "module",
