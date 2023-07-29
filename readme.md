@@ -30,8 +30,8 @@ if you wish to exclude content of some folders then run
 # npx files-and-folders-to-web --excludeContentOf node_modules utils src
 ```
 
-| Arguments           | Optional | type     | Description                                 |
-| ------------------- | -------- | -------- | ------------------------------------------- |
-| - -excludeContentOf | true     | string[] | Exclude the contents of your desired Files. |
+| Arguments          | Optional | type     | Description                                 |
+| ------------------ | -------- | -------- | ------------------------------------------- |
+| --excludeContentOf | true     | string[] | Exclude the contents of your desired Files. |
 
 **\*By default contents of node_modules and .git is excluded. For the rest you have to put the folder name as an argument**
