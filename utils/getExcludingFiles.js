@@ -1,7 +1,7 @@
 const yargs = require('yargs');
 
 const getExcludingFiles = () => {
-  let excludingFiles = [];
+  let excludingFiles = ['.git', 'node_modules'];
   if (
     yargs.argv.excludeContentOf &&
     typeof yargs.argv.excludeContentOf === 'string'
@@ -17,7 +17,7 @@ const getExcludingFiles = () => {
     return excludingFiles;
   }
 
-  return [];
+  return excludingFiles;
 };
 
 module.exports = getExcludingFiles;
