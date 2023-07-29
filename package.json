@@ -1,10 +1,10 @@
 {
-  "name": "files-and-folder-to-web",
+  "name": "files-and-folders-to-web",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "bin": {
-    "files-and-folder-to-web": "index.js"
+    "files-and-folders-to-web": "index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
