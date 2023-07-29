@@ -1,7 +1,7 @@
 {
   "name": "files-and-folders-to-web",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.2",
+  "description": "Visualize your IDE's files and folders in web",
   "main": "./index.js",
   "type": "module",
   "bin": {
@@ -11,7 +11,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Rahul Dotel (ftr9)",
+    "email": "letodluhar16@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ftr9/files-and-folder-to-web"
+  },
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",
