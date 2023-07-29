@@ -2,6 +2,8 @@
 
 Visualize your Ide's files and folder in web for better visualization of project's folder structure
 
+![shortDemo](https://github.com/ftr9/files-and-folder-to-web/assets/60734475/b4cea5d4-5bba-4a80-974a-81c57d6c3f7b)
+
 # Installation
 
 ---
